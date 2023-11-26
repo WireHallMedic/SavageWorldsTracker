@@ -2,8 +2,9 @@ package SavageWorldsTracker;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class SWTRow extends JPanel implements SWTConstants
+public class SWTRow extends JPanel implements SWTConstants, ActionListener
 {
    private static final String[] CARDS_PER_TURN_LIST = {"1", "2", "3"};
    private JButton clearB;
@@ -28,12 +29,14 @@ public class SWTRow extends JPanel implements SWTConstants
       nameF = new JTextField();
       add(nameF);
       cardsPerTurnDD = new JComboBox<String>(CARDS_PER_TURN_LIST);
+      ((JLabel)cardsPerTurnDD.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
       add(cardsPerTurnDD);
       drawB = new JButton("Draw");
       add(drawB);
       cardF = new JTextField();
       add(cardF);
-      benniesF = new JTextField();
+      benniesF = new JTextField("");
+      benniesF.setHorizontalAlignment(SwingConstants.CENTER);
       benniesF.setEditable(false);
       add(benniesF);
       hasActedCB = new JCheckBox("");
@@ -43,9 +46,31 @@ public class SWTRow extends JPanel implements SWTConstants
       benniesControlPanel.setLayout(new GridLayout(2, 1));
       add(benniesControlPanel);
       incrimentBenniesB = new JButton("+");
+      incrimentBenniesB.addActionListener(this);
       benniesControlPanel.add(incrimentBenniesB);
       decrimentBenniesB = new JButton("-");
+      decrimentBenniesB.addActionListener(this);
       benniesControlPanel.add(decrimentBenniesB);
+      setBennies();
+   }
+   
+   public void setBennies()
+   {
+      benniesF.setText("" + bennies);
+   }
+   
+   public void actionPerformed(ActionEvent ae)
+   {
+      if(ae.getSource() == incrimentBenniesB)
+      {
+         bennies++;
+         setBennies();
+      }
+      if(ae.getSource() == decrimentBenniesB)
+      {
+         bennies--;
+         setBennies();
+      }
    }
    
    public void placeComponents()
