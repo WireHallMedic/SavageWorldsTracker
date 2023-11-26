@@ -12,7 +12,11 @@ public class Deck
    public Deck()
    {
       createCardList();
-      shuffle();
+   }
+   
+   public String getSizeString()
+   {
+      return (cardList.size() - curIndex) + "/" + (cardList.size());
    }
    
    public String draw()

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SWTControlPanel extends JPanel implements SWTConstants, ActionListener
+public class SWTControlPanel extends SWTRow implements SWTConstants, ActionListener
 {
    private JButton newTurnB;
    private JButton drawAllB;
@@ -33,6 +33,11 @@ public class SWTControlPanel extends JPanel implements SWTConstants, ActionListe
       shuffleB = new JButton("Shuffle");
       shuffleB.addActionListener(this);
       add(shuffleB);
+      
+      for(Component c : this.getComponents())
+      {
+         c.setFocusable(false);
+      }
    }
    
    public void actionPerformed(ActionEvent ae)
@@ -54,5 +59,25 @@ public class SWTControlPanel extends JPanel implements SWTConstants, ActionListe
       {
          parent.shuffle();
       }
+      setShuffleButtonText();
+   }
+   
+   public void setShuffleButtonText()
+   {
+      String text = "Shuffle (" + parent.getDeckSize() + ")";
+      shuffleB.setText(text);
+   }
+   
+   public void placeComponents()
+   {
+      resizeFonts();
+   }
+   
+   public void resizeFonts()
+   {
+      setFontSize(newTurnB);
+      setFontSize(drawAllB);
+      setFontSize(clearActedB);
+      setFontSize(shuffleB);
    }
 }

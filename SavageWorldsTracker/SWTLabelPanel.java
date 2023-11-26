@@ -3,7 +3,7 @@ package SavageWorldsTracker;
 import javax.swing.*;
 import java.awt.*;
 
-public class SWTLabelPanel extends JPanel implements SWTConstants
+public class SWTLabelPanel extends SWTRow implements SWTConstants
 {
    private JLabel nameL;
    private JLabel cardsPerTurnL;
@@ -18,7 +18,7 @@ public class SWTLabelPanel extends JPanel implements SWTConstants
       setLayout(null);
       nameL = new JLabel("Name", SwingConstants.CENTER);
       add(nameL);
-      cardsPerTurnL = new JLabel("Cards/Turn", SwingConstants.CENTER);
+      cardsPerTurnL = new JLabel("# Cards", SwingConstants.CENTER);
       add(cardsPerTurnL);
       drawBL = new JLabel("");
       add(drawBL);
@@ -28,6 +28,11 @@ public class SWTLabelPanel extends JPanel implements SWTConstants
       add(benniesL);
       hasActedL = new JLabel("Acted", SwingConstants.CENTER);
       add(hasActedL);
+      
+      for(Component c : this.getComponents())
+      {
+         c.setFocusable(false);
+      }
    }
    
    public void placeComponents()
@@ -52,5 +57,17 @@ public class SWTLabelPanel extends JPanel implements SWTConstants
       
       hasActedL.setSize((int)(HAS_ACTED_WIDTH * width), height);
       hasActedL.setLocation((int)(HAS_ACTED_INSET * width), 0);
+      
+      resizeFonts();
+   }
+   
+   public void resizeFonts()
+   {
+      setFontSize(nameL);
+      setFontSize(cardsPerTurnL);
+      setFontSize(drawBL);
+      setFontSize(cardL);
+      setFontSize(benniesL);
+      setFontSize(hasActedL);
    }
 }
