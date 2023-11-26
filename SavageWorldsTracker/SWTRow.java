@@ -18,13 +18,16 @@ public class SWTRow extends JPanel implements SWTConstants, ActionListener
    private JButton incrimentBenniesB;
    private JButton decrimentBenniesB;
    private int bennies;
+   private Deck deck;
    
-   public SWTRow()
+   public SWTRow(Deck d)
    {
       super();
+      deck = d;
       bennies = 0;
       setLayout(null);
       clearB = new JButton("X");
+      clearB.addActionListener(this);
       add(clearB);
       nameF = new JTextField();
       add(nameF);
@@ -32,6 +35,7 @@ public class SWTRow extends JPanel implements SWTConstants, ActionListener
       ((JLabel)cardsPerTurnDD.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
       add(cardsPerTurnDD);
       drawB = new JButton("Draw");
+      drawB.addActionListener(this);
       add(drawB);
       cardF = new JTextField();
       add(cardF);
@@ -54,9 +58,48 @@ public class SWTRow extends JPanel implements SWTConstants, ActionListener
       setBennies();
    }
    
+   public boolean isActive()
+   {
+      return nameF.getText().equals("") == false;
+   }
+   
    public void setBennies()
    {
       benniesF.setText("" + bennies);
+   }
+   
+   public void clearActed()
+   {
+      hasActedCB.setSelected(false);
+   }
+   
+   public void draw()
+   {
+      int draws = cardsPerTurnDD.getSelectedIndex() + 1;
+      String str = "";
+      for(int i = 0; i < draws; i++)
+      {
+         str += deck.draw();
+         if(i < draws - 1)
+            str += ", ";
+      }
+      cardF.setText(str);
+   }
+   
+   public void clearAll()
+   {
+      bennies = 0;
+      nameF.setText("");
+      cardsPerTurnDD.setSelectedIndex(0);
+      cardF.setText("");
+      hasActedCB.setSelected(false);
+      setBennies();
+   }
+   
+   public void clean()
+   {
+      if(!isActive())
+         clearAll();
    }
    
    public void actionPerformed(ActionEvent ae)
@@ -70,6 +113,14 @@ public class SWTRow extends JPanel implements SWTConstants, ActionListener
       {
          bennies--;
          setBennies();
+      }
+      if(ae.getSource() == clearB)
+      {
+         clearAll();
+      }
+      if(ae.getSource() == drawB)
+      {
+         draw();
       }
    }
    
