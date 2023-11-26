@@ -13,11 +13,17 @@ s#i0
 s#k0
 s#j0
 s#l0
-!128;g
+!211;g
+%\011SavageWorldsTracker%sSWTLabelPanel.java
 %\011SavageWorldsTracker%sSWTConstants.java
 %\011SavageWorldsTracker%sSavageWorldsMain.java
+%\011SavageWorldsTracker%sSWTRow.java
 %\011SavageWorldsTracker%sDeck.java
-!128;f
+!211;f
+%\011SavageWorldsTracker%sSWTLabelPanel.java
 %\011SavageWorldsTracker%sSWTConstants.java
 %\011SavageWorldsTracker%sSavageWorldsMain.java
+%\011SavageWorldsTracker%sSWTRow.java
 %\011SavageWorldsTracker%sDeck.java
+!47;m
+RunSelect	SavageWorldsTracker.SavageWorldsMain
