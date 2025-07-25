@@ -10,6 +10,7 @@ public class SWTControlPanel extends SWTRow implements SWTConstants, ActionListe
    private JButton drawAllB;
    private JButton clearActedB;
    private JButton shuffleB;
+   private JButton clearCardsB;
    private SavageWorldsMain parent;
    
    public SWTControlPanel(SavageWorldsMain p)
@@ -29,6 +30,10 @@ public class SWTControlPanel extends SWTRow implements SWTConstants, ActionListe
       clearActedB = new JButton("Clear Acted");
       clearActedB.addActionListener(this);
       add(clearActedB);
+      
+      clearCardsB = new JButton("Clear Cards");
+      clearCardsB.addActionListener(this);
+      add(clearCardsB);
       
       shuffleB = new JButton("Shuffle");
       shuffleB.addActionListener(this);
@@ -59,6 +64,10 @@ public class SWTControlPanel extends SWTRow implements SWTConstants, ActionListe
       {
          parent.shuffle();
       }
+      if(ae.getSource() == clearCardsB)
+      {
+         parent.clearCards();
+      }
       setShuffleButtonText();
    }
    
@@ -79,5 +88,6 @@ public class SWTControlPanel extends SWTRow implements SWTConstants, ActionListe
       setFontSize(drawAllB);
       setFontSize(clearActedB);
       setFontSize(shuffleB);
+      setFontSize(clearCardsB);
    }
 }

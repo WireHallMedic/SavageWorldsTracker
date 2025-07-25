@@ -11,6 +11,7 @@ public class SWTLabelPanel extends SWTRow implements SWTConstants
    private JLabel cardL;
    private JLabel benniesL;
    private JLabel hasActedL;
+   private JLabel shakenL;
    
    public SWTLabelPanel()
    {
@@ -28,6 +29,8 @@ public class SWTLabelPanel extends SWTRow implements SWTConstants
       add(benniesL);
       hasActedL = new JLabel("Acted", SwingConstants.CENTER);
       add(hasActedL);
+      shakenL = new JLabel("Shaken", SwingConstants.CENTER);
+      add(shakenL);
       
       for(Component c : this.getComponents())
       {
@@ -58,6 +61,9 @@ public class SWTLabelPanel extends SWTRow implements SWTConstants
       hasActedL.setSize((int)(HAS_ACTED_WIDTH * width), height);
       hasActedL.setLocation((int)(HAS_ACTED_INSET * width), 0);
       
+      shakenL.setSize((int)(SHAKEN_WIDTH * width), height);
+      shakenL.setLocation((int)(SHAKEN_INSET * width), 0);
+      
       resizeFonts();
    }
    
@@ -69,5 +75,6 @@ public class SWTLabelPanel extends SWTRow implements SWTConstants
       setFontSize(cardL);
       setFontSize(benniesL);
       setFontSize(hasActedL);
+      setFontSize(shakenL);
    }
 }

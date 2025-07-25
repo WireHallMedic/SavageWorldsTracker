@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class SWTCharacterRow extends SWTRow implements SWTConstants, ActionListener
 {
-   private static final String[] CARDS_PER_TURN_LIST = {"1", "2", "3"};
+   private static final String[] CARDS_PER_TURN_LIST = {"0", "1", "2", "3"};
    private JButton clearB;
    private JTextField nameF;
    private JComboBox<String> cardsPerTurnDD;
@@ -17,6 +17,7 @@ public class SWTCharacterRow extends SWTRow implements SWTConstants, ActionListe
    private JPanel benniesControlPanel;
    private JButton incrimentBenniesB;
    private JButton decrimentBenniesB;
+   private JCheckBox shakenCB;
    private int bennies;
    private Deck deck;
    private SavageWorldsMain parent;
@@ -35,6 +36,7 @@ public class SWTCharacterRow extends SWTRow implements SWTConstants, ActionListe
       nameF.setHorizontalAlignment(SwingConstants.CENTER);
       add(nameF);
       cardsPerTurnDD = new JComboBox<String>(CARDS_PER_TURN_LIST);
+      cardsPerTurnDD.setSelectedIndex(1);
       ((JLabel)cardsPerTurnDD.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
       add(cardsPerTurnDD);
       drawB = new JButton("Draw");
@@ -62,6 +64,9 @@ public class SWTCharacterRow extends SWTRow implements SWTConstants, ActionListe
       decrimentBenniesB.setFocusable(false);
       decrimentBenniesB.addActionListener(this);
       benniesControlPanel.add(decrimentBenniesB);
+      shakenCB = new JCheckBox("");
+      shakenCB.setHorizontalAlignment(SwingConstants.CENTER);
+      add(shakenCB);
       setBennies();
       
       for(Component c : this.getComponents())
@@ -86,6 +91,11 @@ public class SWTCharacterRow extends SWTRow implements SWTConstants, ActionListe
       hasActedCB.setSelected(false);
    }
    
+   public void clearShaken()
+   {
+      shakenCB.setSelected(false);
+   }
+   
    public void clearCard()
    {
       cardF.setText("");
@@ -93,7 +103,7 @@ public class SWTCharacterRow extends SWTRow implements SWTConstants, ActionListe
    
    public void draw()
    {
-      int draws = cardsPerTurnDD.getSelectedIndex() + 1;
+      int draws = cardsPerTurnDD.getSelectedIndex();
       String str = "";
       for(int i = 0; i < draws; i++)
       {
@@ -111,7 +121,8 @@ public class SWTCharacterRow extends SWTRow implements SWTConstants, ActionListe
       nameF.setText("");
       cardsPerTurnDD.setSelectedIndex(0);
       cardF.setText("");
-      hasActedCB.setSelected(false);
+      clearActed();
+      clearShaken();
       setBennies();
    }
    
@@ -171,6 +182,9 @@ public class SWTCharacterRow extends SWTRow implements SWTConstants, ActionListe
       
       hasActedCB.setSize((int)(HAS_ACTED_WIDTH * width), height);
       hasActedCB.setLocation((int)(HAS_ACTED_INSET * width), 0);
+      
+      shakenCB.setSize((int)(SHAKEN_WIDTH * width), height);
+      shakenCB.setLocation((int)(SHAKEN_INSET * width), 0);
       
       resizeFonts();
    }

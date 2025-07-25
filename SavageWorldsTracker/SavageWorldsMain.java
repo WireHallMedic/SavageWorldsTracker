@@ -18,7 +18,7 @@ public class SavageWorldsMain extends JFrame implements ComponentListener
    public SavageWorldsMain()
    {
       super();
-      setSize(1200, 800);
+      setSize(1400, 800);
       setTitle("Savage Worlds Tracker");
       deck = new Deck();
       deck.shuffle();
@@ -66,6 +66,12 @@ public class SavageWorldsMain extends JFrame implements ComponentListener
    {
       for(int i = 0; i < REGULAR_ROWS; i++)
          characterRowList[i].clearActed();
+   }
+   
+   public void clearCards()
+   {
+      for(int i = 0; i < REGULAR_ROWS; i++)
+         characterRowList[i].clearCard();
    }
    
    public void drawAll()
